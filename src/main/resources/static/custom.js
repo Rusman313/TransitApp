@@ -6,13 +6,13 @@ function initMap() {
         scrollwheel: false
     });
     
-    var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/'
+    var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/'
 
     for (let i=0; i<busLocations.length; i++){
         var marker = new google.maps.Marker({
             position: { lat: parseFloat(busLocations[i].LATITUDE), lng: parseFloat(busLocations[i].LONGITUDE) },
             map: map,
-            icon: iconBase + 'pink-blank.png'
+            icon: iconBase + 'bus.png'
         });
     }
     
