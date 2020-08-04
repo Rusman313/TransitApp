@@ -5,11 +5,14 @@ function initMap() {
         zoom: 15,
         scrollwheel: false
     });
-	
+    
+    var iconBase = 'http://maps.google.com/mapfiles/kml/paddle/'
+
     for (let i=0; i<busLocations.length; i++){
         var marker = new google.maps.Marker({
             position: { lat: parseFloat(busLocations[i].LATITUDE), lng: parseFloat(busLocations[i].LONGITUDE) },
             map: map,
+            icon: iconBase + 'pink-blank.png'
         });
     }
     
