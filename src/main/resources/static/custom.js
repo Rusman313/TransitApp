@@ -1,4 +1,4 @@
-var map, infoWindow;
+var map, infoWindow, busInfo;
 function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
         center: { lat: parseFloat(busLocations[0].LATITUDE), lng: parseFloat(busLocations[0].LONGITUDE) },
@@ -7,15 +7,21 @@ function initMap() {
     });
     
     var iconBase = 'http://maps.google.com/mapfiles/kml/shapes/'
-
+    
     for (let i=0; i<busLocations.length; i++){
         var marker = new google.maps.Marker({
             position: { lat: parseFloat(busLocations[i].LATITUDE), lng: parseFloat(busLocations[i].LONGITUDE) },
             map: map,
             icon: iconBase + 'bus.png'
+            
+            
         });
     }
-    
+    // transit map layer
+    const transitLayer = new google.maps.TransitLayer();
+    transitLayer.setMap(map);
+
+
       infoWindow = new google.maps.InfoWindow;
 
       // Try HTML5 geolocation.
@@ -27,7 +33,7 @@ function initMap() {
           };
 
           infoWindow.setPosition(pos);
-          infoWindow.setContent('Location found.');
+          infoWindow.setContent('You are here.');
           infoWindow.open(map);
           map.setCenter(pos);
         }, function() {
